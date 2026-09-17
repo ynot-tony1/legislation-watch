@@ -15,7 +15,7 @@ export default async function Home() {
   return (
     <div className="mx-auto max-w-6xl px-6">
       <div className="pt-8">
-        <h1 className="text-2xl font-semibold tracking-tight">Legislative Tracker</h1>
+        <h1 className="text-2xl font-semibold tracking-tight">Legislation Watch</h1>
         <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
           {bills.length} bills currently moving through the UK Parliament, translated from procedural jargon into
           plain language as each one advances.

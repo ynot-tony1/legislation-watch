@@ -1,9 +1,11 @@
-# Legislative Tracker
+# Legislation Watch
 
-Live: https://legislative-tracker-uk.vercel.app
+Live: https://legislation-watch.vercel.app
 
 Plain-language tracking of bills moving through the UK Parliament, sourced from
 the official [Bills API](https://bills-api.parliament.uk) (no auth required).
+Named "Legislation Watch" rather than "UK Bill Tracker" so it can extend to other
+countries' legislatures later without a rebrand.
 
 ## Architecture
 

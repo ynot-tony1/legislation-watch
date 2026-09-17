@@ -18,8 +18,8 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Legislative Tracker",
-    template: "%s · Legislative Tracker",
+    default: "Legislation Watch",
+    template: "%s · Legislation Watch",
   },
   description:
     "Plain-language tracking of UK Parliament bills as they move through each stage, sourced from the official Bills API.",
@@ -43,9 +43,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <div className="mx-auto flex h-full max-w-6xl items-center justify-between px-6">
             <Link href="/" className="flex items-center gap-2">
               <span className="flex size-6 items-center justify-center rounded-md bg-foreground text-[11px] font-bold text-background">
-                LT
+                LW
               </span>
-              <span className="text-sm font-semibold tracking-tight">Legislative Tracker</span>
+              <span className="text-sm font-semibold tracking-tight">Legislation Watch</span>
             </Link>
             <a
               href="https://bills-api.parliament.uk"
