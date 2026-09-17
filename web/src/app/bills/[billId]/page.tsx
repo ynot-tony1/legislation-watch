@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
-import { getBillByBillId, getBillStageEvents, getBills } from "@/db/queries";
+import { getBillByBillId, getBillStageEvents, getBills, getSectorActivity } from "@/db/queries";
 import { isDbConfigured } from "@/db/client";
 import { Badge } from "@/components/ui/badge";
 import { DbNotConfigured } from "@/components/state-messages";
@@ -38,7 +38,10 @@ export default async function BillPage({ params }: PageProps<"/bills/[billId]">)
   const bill = await getBillByBillId(numericId);
   if (!bill) notFound();
 
-  const events = await getBillStageEvents(numericId);
+  const [events, sectors] = await Promise.all([getBillStageEvents(numericId), getSectorActivity()]);
+  const sectorRank = sectors.findIndex((s) => s.topic === bill.topic);
+  const sector = sectorRank === -1 ? null : sectors[sectorRank];
+  const isTopHalfSector = sector !== null && sectorRank < sectors.length / 2;
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-8">
@@ -83,6 +86,19 @@ export default async function BillPage({ params }: PageProps<"/bills/[billId]">)
           </Badge>
         )}
       </div>
+
+      {sector && (
+        <p className="mt-6 text-sm text-muted-foreground">
+          Business impact:{" "}
+          <Link href="/sectors" className="text-primary underline underline-offset-2">
+            {topicLabel(bill.topic)}
+          </Link>{" "}
+          currently has {sector.activeBills} bill{sector.activeBills === 1 ? "" : "s"} in motion and{" "}
+          {sector.recentStageEvents} stage advance{sector.recentStageEvents === 1 ? "" : "s"} across the sector in
+          the last 30 days
+          {isTopHalfSector ? " - more legislative movement than most sectors we track right now." : "."}
+        </p>
+      )}
 
       <div className="mt-10">
         <h2 className="mb-4 font-heading text-lg font-medium">Progress through Parliament</h2>

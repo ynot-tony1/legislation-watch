@@ -43,15 +43,23 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               </span>
               <span className="font-heading text-lg font-semibold tracking-tight">Legislation Watch</span>
             </Link>
-            <a
-              href="https://bills-api.parliament.uk"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
-            >
-              Data source: UK Parliament Bills API
-              <ExternalLink className="size-3" aria-hidden />
-            </a>
+            <div className="flex items-center gap-5">
+              <Link
+                href="/sectors"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                Business Impact
+              </Link>
+              <a
+                href="https://bills-api.parliament.uk"
+                target="_blank"
+                rel="noreferrer"
+                className="hidden items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
+              >
+                Data source: UK Parliament Bills API
+                <ExternalLink className="size-3" aria-hidden />
+              </a>
+            </div>
           </div>
         </header>
         <main className="flex-1">{children}</main>
