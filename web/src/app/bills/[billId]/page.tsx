@@ -56,7 +56,7 @@ export default async function BillPage({ params }: PageProps<"/bills/[billId]">)
             <span>{bill.currentHouse}</span>
             {bill.leadOrganisation && <span>· {bill.leadOrganisation}</span>}
           </div>
-          <h1 className="mt-1 text-2xl font-semibold tracking-tight">{bill.shortTitle}</h1>
+          <h1 className="mt-1 text-3xl font-semibold tracking-tight">{bill.shortTitle}</h1>
           {bill.longTitle && <p className="mt-2 text-sm text-muted-foreground">{bill.longTitle}</p>}
         </div>
         {bill.sourceUrl && (
@@ -71,10 +71,12 @@ export default async function BillPage({ params }: PageProps<"/bills/[billId]">)
         )}
       </div>
 
-      <div className="mt-6 rounded-lg border bg-card p-4">
+      <div className="mt-6 rounded-sm border border-l-4 border-l-primary bg-card p-4">
         <div className="text-xs text-muted-foreground">Current stage</div>
         <div className="mt-1 font-medium">{bill.currentStageDescription ?? "—"}</div>
-        {bill.isAct && <Badge className="mt-2">Became law</Badge>}
+        {bill.isAct && (
+          <Badge className="mt-2 bg-primary text-primary-foreground">Became law</Badge>
+        )}
         {bill.isDefeated && (
           <Badge variant="outline" className="mt-2">
             Defeated
@@ -83,11 +85,11 @@ export default async function BillPage({ params }: PageProps<"/bills/[billId]">)
       </div>
 
       <div className="mt-10">
-        <h2 className="mb-4 text-sm font-medium text-muted-foreground">Progress through Parliament</h2>
-        <ol className="space-y-6 border-l pl-6">
+        <h2 className="mb-4 font-heading text-lg font-medium">Progress through Parliament</h2>
+        <ol className="space-y-6 border-l-2 border-primary/20 pl-6">
           {events.map((event) => (
             <li key={event.id} className="relative">
-              <span className="absolute -left-[29px] top-1 size-2.5 rounded-full bg-foreground" aria-hidden />
+              <span className="absolute -left-[29px] top-1 size-2.5 rounded-full bg-primary" aria-hidden />
               <div className="flex flex-wrap items-baseline gap-2">
                 <span className="text-sm font-medium">{event.stageDescription}</span>
                 {event.house && <span className="text-xs text-muted-foreground">{event.house}</span>}

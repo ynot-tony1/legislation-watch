@@ -13,9 +13,9 @@ export default async function Home() {
   const [bills, topics] = await Promise.all([getBills(), getTopicsWithCounts()]);
 
   return (
-    <div className="mx-auto max-w-6xl px-6">
-      <div className="pt-8">
-        <h1 className="text-2xl font-semibold tracking-tight">Legislation Watch</h1>
+    <div className="mx-auto max-w-3xl px-6">
+      <div className="pt-10 pb-2">
+        <h1 className="text-3xl font-semibold tracking-tight">Legislation Watch</h1>
         <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
           {bills.length} bills currently moving through the UK Parliament, translated from procedural jargon into
           plain language as each one advances.
