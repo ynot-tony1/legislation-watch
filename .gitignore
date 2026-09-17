@@ -1,0 +1,16 @@
+# Python (scraper)
+__pycache__/
+*.pyc
+scraper/.venv/
+scraper/venv/
+
+# env files
+.env
+.env.*
+!*.env.example
+
+# OS
+.DS_Store
+
+# Claude Code harness state
+.claude/
